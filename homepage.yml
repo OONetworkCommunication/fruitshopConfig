@@ -2,6 +2,43 @@ shopinfo:
   title: FruitShooooop
 
 server:
+  port: 80
+
+zuul:  
+  routes:
+    search:
+      url: http://search:9001
+      path: /search/**
+      stripPrefix: false
+    basket:
+      url: http://basket:9002
+      path: /basket/**
+      stripPrefix: false
+    contact:
+      url: http://contact:9003
+      path: /contact/**
+      stripPrefix: false
+---
+spring:  
+  profiles: development
+shopinfo:
+  title: FruitShooooop
+
+server:
   port: 9000
 
-
+zuul:
+  routes:
+    search:
+      url: http://localhost:9001
+      path: /search/**
+      stripPrefix: false
+    basket:
+      url: http://localhost:9002
+      path: /basket/**
+      stripPrefix: false
+    contact:
+      url: http://localhost:9003
+      path: /contact/**
+      stripPrefix: false
+debug: true 
